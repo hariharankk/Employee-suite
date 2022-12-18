@@ -263,11 +263,16 @@ try {
       padding: EdgeInsets.fromLTRB(0.0, 45.0, 0.0, 0.0),
       child: SizedBox(
         height: 40.0,
-        child: new RaisedButton(
-          elevation: 5.0,
-          shape: new RoundedRectangleBorder(
-              borderRadius: new BorderRadius.circular(30.0)),
-          color: Colors.blue,
+        child: new ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            primary: Colors.blue,
+            shape: RoundedRectangleBorder(
+              borderRadius: new BorderRadius.circular(30.0)
+            )),
+          // elevation: 5.0,
+          // shape: new RoundedRectangleBorder(
+          //     borderRadius: new BorderRadius.circular(30.0)),
+          // color: Colors.blue,
           child: new Text(
             _isPhone ? (_codeSent ? 'Login' : 'Verify Phone') : 'Login',
             style: new TextStyle(

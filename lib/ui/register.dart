@@ -212,11 +212,17 @@ class _registerState extends State<register> {
       padding: EdgeInsets.fromLTRB(0.0, 45.0, 0.0, 0.0),
       child: SizedBox(
         height: 40.0,
-        child: new RaisedButton(
-          elevation: 5.0,
-          shape: new RoundedRectangleBorder(
-              borderRadius: new BorderRadius.circular(30.0)),
-          color: Colors.blue,
+        child: new ElevatedButton(
+          // elevation: 5.0,
+          // shape: new RoundedRectangleBorder(
+          //     borderRadius: new BorderRadius.circular(30.0)),
+          // color: Colors.blue,
+          style: ElevatedButton.styleFrom(
+            primary: Colors.blue,
+            shape: RoundedRectangleBorder(
+              borderRadius: new BorderRadius.circular(30.0)
+            )
+          ),
           child: new Text('Register',
             style: new TextStyle(
               fontSize: 20.0,

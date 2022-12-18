@@ -6,6 +6,7 @@ import 'package:mark/ui/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:mark/ui/admin or user.dart';
 import 'package:mark/ui/login_page.dart';
+import 'package:mark/widgets/employeeCalendar.dart';
 
 List<CameraDescription> cameras;
 var frontCamera;
@@ -35,7 +36,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: "Attendance",
       debugShowCheckedModeBanner: false,
-      home: SplashScreen());
+      home: 
+      // SplashScreen()
+      employeeCalendar()
+      );
 
   }
 }
