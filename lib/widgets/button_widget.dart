@@ -37,14 +37,16 @@ class ButtonWidget extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
+            
           ),
           minimumSize: Size.fromHeight(50),
-          primary: Colors.blue,
+          primary: Color.fromARGB(255, 252, 252, 252),
+          
         ),
         child: FittedBox(
           child: Text(
             text,
-            style: TextStyle(fontSize: 20, color: Colors.white),
+            style: TextStyle(fontSize: 20, color: Color.fromARGB(255, 5, 116, 176)),
           ),
         ),
         onPressed: onClicked,
