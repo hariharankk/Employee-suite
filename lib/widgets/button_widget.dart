@@ -36,6 +36,7 @@ class ButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) => ElevatedButton(
         style: ElevatedButton.styleFrom(
           shape: RoundedRectangleBorder(
+            side: BorderSide(color:Colors.blue,width:1.4),
             borderRadius: BorderRadius.circular(10),
             
           ),

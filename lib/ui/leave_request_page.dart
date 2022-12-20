@@ -49,7 +49,7 @@ class _leaveRequestState extends State<leaveRequest> {
                   minLines: 1,
                   maxLines: 5,
                   ),
-                  const SizedBox(height: 45),
+                  const SizedBox(height: 25),
                   ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     shape: RoundedRectangleBorder(
