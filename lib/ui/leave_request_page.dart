@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:mark/widgets/button_widget.dart';
+import 'package:mark/widgets/employee_calendar.dart';
 
 import '../widgets/date_picker.dart';
 import '../widgets/date_range.dart';
@@ -22,6 +23,19 @@ class _leaveRequestState extends State<leaveRequest> {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
+    leading:IconButton(
+      icon: Icon(
+        Icons.arrow_back,
+        color: Colors.white,
+      ),
+      onPressed: () { 
+        Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => employeeCalendar()),
+  ); 
+   },
+    ),
           centerTitle: true,
           title: Text('Leave Request')),
         body: buildPages(),
@@ -31,12 +45,11 @@ class _leaveRequestState extends State<leaveRequest> {
         return Scaffold(
           backgroundColor: Color.fromARGB(255, 255, 255, 255),
           body: Padding(
-            padding: EdgeInsets.all(30),
+            padding: EdgeInsets.all(25),
             child: SingleChildScrollView(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-            
                   DatePickerWidget(),
                   const SizedBox(height: 15),
                   TimePickerWidget(),
@@ -64,7 +77,7 @@ class _leaveRequestState extends State<leaveRequest> {
               style: TextStyle(fontSize: 22, color: Color.fromARGB(255, 248, 248, 248)),
                       ),
                     ),
-                  onPressed: (){})
+                  onPressed: (){ })
                 ],
               ),
             ),

@@ -40,8 +40,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: 
       // SplashScreen()
-      // employeeCalendar(),
-      leaveRequest()
+      employeeCalendar(),
+      // leaveRequest()
       );
 
   }
