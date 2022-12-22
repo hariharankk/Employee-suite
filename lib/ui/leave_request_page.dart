@@ -12,6 +12,14 @@ class leaveRequest extends StatefulWidget {
   // const leaveRequest({super.key});
   @override
   State<leaveRequest> createState() => _leaveRequestState();
+  // bool isDisable = true;
+  // void setButton() {
+  //   if (isDisable) {
+  //     isDisable = false;
+  //   } else {
+  //     isDisable = true;
+  //   }
+  // }
 }
 
 class _leaveRequestState extends State<leaveRequest> {
@@ -53,14 +61,13 @@ class _leaveRequestState extends State<leaveRequest> {
               const SizedBox(height: 15),
               DateRangePickerWidget(),
               const SizedBox(height: 85),
-              // Note: Same code is applied for the TextFormField as well
+              
               TextField(
                 decoration: InputDecoration(
                   prefixIcon: Icon(Icons.text_snippet),
                   labelText: 'Enter Reason for leave',
                   enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                        width: 1.4, color: Colors.blue), 
+                    borderSide: BorderSide(width: 1.4, color: Colors.blue),
                     borderRadius: BorderRadius.circular(50.0),
                   ),
                 ),
