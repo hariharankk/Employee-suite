@@ -1,123 +1,148 @@
+
+import 'dart:math';
+
 import 'package:flutter/material.dart';
-import 'package:mark/ui/leave_request_page.dart';
-import 'package:table_calendar/table_calendar.dart';
+
+import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart'
+    show CalendarCarousel;
+import 'package:flutter_calendar_carousel/classes/event.dart';
+import 'package:flutter_calendar_carousel/classes/event_list.dart';
 
 class employeeCalendar extends StatefulWidget {
-  // const employeeCalendar({Key? key}) : super(key: key);
-
   @override
-  State<employeeCalendar> createState() => _employeeCalendarState();
+  _employeeCalendarState createState() => new _employeeCalendarState();
 }
 
+List<DateTime> NightDates = [
+  DateTime(2022, 12, 1),
+  DateTime(2022, 12, 3),
+  DateTime(2022, 12, 4),
+  DateTime(2022, 12, 5),
+  DateTime(2022, 12, 6),
+  DateTime(2022, 12, 9),
+  DateTime(2022, 12, 10),
+  DateTime(2022, 12, 12),
+  DateTime(2022, 12, 15),
+  DateTime(2022, 12, 22),
+  DateTime(2022, 12, 23),
+  DateTime(2022,11,11),
+];
+List<DateTime> MorningDates = [
+  DateTime(2022, 12, 2),
+  DateTime(2022, 12, 7),
+  DateTime(2022, 12, 8),
+  DateTime(2022, 12, 12),
+  DateTime(2022, 12, 13),
+  DateTime(2022, 12, 14),
+  DateTime(2022, 12, 16),
+  DateTime(2022, 12, 17),
+  DateTime(2022, 12, 18),
+  DateTime(2022, 12, 19),
+  DateTime(2022, 12, 20),
+];
+
 class _employeeCalendarState extends State<employeeCalendar> {
-  CalendarFormat _calendarFormat = CalendarFormat.month;
-  DateTime _focusedDay = DateTime.now();
-  DateTime _selectedDay;
+  DateTime _currentDate2 = DateTime.now();
+  static Widget _presentIcon(String day) => CircleAvatar(
+        backgroundColor: Colors.blue[200],
+        child: Text(
+          day,
+          style: TextStyle(
+            color: Colors.black,
+          ),
+        ),
+      );
+  static Widget _MorningIcon(String day) => CircleAvatar(
+        backgroundColor: Colors.red[400],
+        child: Text(
+          day,
+          style: TextStyle(
+            color: Colors.black,
+          ),
+        ),
+      );
+
+  EventList<Event> _markedDateMap = new EventList<Event>(
+    events: {},
+  );
+
+  CalendarCarousel _calendarCarouselNoHeader;
+
+  var len = min(MorningDates?.length, NightDates.length);
+  double cHeight;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        // actions: <Widget>[
-        //   IconButton(
-        //     icon: Icon(
-        //       Icons.arrow_forward,
-        //       color: Colors.white,
-        //     ),
-        //     onPressed: () {
-        //       Navigator.push(
-        //         context,
-        //         MaterialPageRoute(builder: (context) => leaveRequest()),
-        //       );
-        //     },
-        //   )
-        // ],
-        centerTitle: true,
-        title: const Text("Employee Calendar"),
-      ),
-      body: Column(
-        children: [
-          TableCalendar(
-            firstDay: DateTime(2022),
-            lastDay: DateTime(2023),
-            focusedDay: _focusedDay,
-            calendarFormat: _calendarFormat,
-            startingDayOfWeek: StartingDayOfWeek.monday,
-            rowHeight: 60,
-            daysOfWeekHeight: 60,
-            headerStyle: HeaderStyle(
-              titleTextStyle: const TextStyle(
-                  color: Colors.blueAccent, fontWeight: FontWeight.bold),
-              formatButtonTextStyle:
-                  const TextStyle(color: Color.fromARGB(255, 76, 111, 175)),
-              formatButtonDecoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(color: Colors.blueAccent, width: 2),
-              ),
-              leftChevronIcon: const Icon(
-                Icons.arrow_back,
-                color: Colors.blueAccent,
-                size: 28,
-              ),
-              rightChevronIcon: const Icon(
-                Icons.arrow_forward,
-                color: Colors.blueAccent,
-                size: 28,
-              ),
-            ),
-            daysOfWeekStyle: const DaysOfWeekStyle(
-              weekendStyle: TextStyle(color: Colors.blue),
-            ),
-            calendarStyle: const CalendarStyle(
-              weekendTextStyle:
-                  TextStyle(color: Color.fromARGB(255, 235, 54, 244)),
-              todayDecoration: BoxDecoration(
-                color: Color.fromARGB(255, 7, 156, 255),
-                shape: BoxShape.circle,
-              ),
-              selectedDecoration: BoxDecoration(
-                color: Color.fromARGB(255, 29, 144, 239),
-                shape: BoxShape.circle,
-              ),
-            ),
-            onDaySelected: (selectedDay, focusedDay) {
-              if (!isSameDay(_selectedDay, selectedDay)) {
-                setState(() {
-                  _selectedDay = selectedDay;
-                  _focusedDay = focusedDay;
-                });
-              }
-            },
-            selectedDayPredicate: (day) {
-              return isSameDay(_selectedDay, day);
-            },
-            onFormatChanged: (format) {
-              if (_calendarFormat != format) {
-                setState(() {
-                  _calendarFormat = format;
-                });
-              }
-            },
-            onPageChanged: (focusedDay) {
-              _focusedDay = focusedDay;
-            },
+    cHeight = MediaQuery.of(context).size.height;
+    for (int i = 0; i < len; i++) {
+      _markedDateMap.add(
+        NightDates[i],
+        new Event(
+          date: NightDates[i],
+          title: 'Night Shift',
+          icon: _presentIcon(
+            NightDates[i].day.toString(),
           ),
-          SizedBox(height: 20),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              fixedSize: Size(190, 40),
-              backgroundColor: Colors.blue,
-              foregroundColor: Colors.white,
-            ),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => leaveRequest()),
-              );
-            },
-            child: FittedBox(child: const Text('Leave Request')),
-          )
-        ],
+        ),
+      );
+    }
+
+    for (int i = 0; i < len; i++) {
+      _markedDateMap.add(
+        MorningDates[i],
+        new Event(
+          date: MorningDates[i],
+          title: 'Morning Shift',
+          icon: _MorningIcon(
+            MorningDates[i].day.toString(),
+          ),
+        ),
+      );
+    }
+
+    _calendarCarouselNoHeader = CalendarCarousel<Event>(
+      height: cHeight * 0.54,
+      weekendTextStyle: TextStyle(
+        color: Colors.green,
+      ),
+      todayButtonColor: Colors.yellow[400],
+      markedDatesMap: _markedDateMap,
+      markedDateShowIcon: true,
+      markedDateIconMaxShown: 1,
+      markedDateMoreShowTotal:
+          null, 
+      markedDateIconBuilder: (event) {
+        return event.icon;
+      },
+    );
+
+    return new Scaffold(
+      appBar: new AppBar(
+        title: new Text("Employee Calendar"),
+        centerTitle: true,
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            _calendarCarouselNoHeader,
+            markerRepresent(Colors.red[400], "Morning Shift"),
+            markerRepresent(Colors.blue[200], "Night Shift"),
+            markerRepresent(Colors.yellow[400],"Today")
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget markerRepresent(Color color, String data) {
+    return new ListTile(
+      leading: new CircleAvatar(
+        backgroundColor: color,
+        radius: cHeight * 0.015,
+      ),
+      title: new Text(
+        data,
       ),
     );
   }
