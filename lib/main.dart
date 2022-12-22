@@ -2,6 +2,8 @@ import 'dart:async';
 import 'package:camera/camera.dart';
 import 'package:mark/services/authentication.dart';
 import 'package:mark/ui/admin_side/admin_page.dart';
+import 'package:mark/ui/admin_side/employee_form.dart';
+import 'package:mark/ui/admin_side/list_employee_page.dart';
 import 'package:mark/ui/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:mark/ui/admin or user.dart';
@@ -41,7 +43,9 @@ class MyApp extends StatelessWidget {
       home: 
       // SplashScreen()
       // employeeCalendar(),
+      // ListEmployeePage()
       leaveRequest()
+      // EmployeeForm(),
       );
 
   }

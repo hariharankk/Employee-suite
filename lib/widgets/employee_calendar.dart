@@ -7,6 +7,8 @@ import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart'
     show CalendarCarousel;
 import 'package:flutter_calendar_carousel/classes/event.dart';
 import 'package:flutter_calendar_carousel/classes/event_list.dart';
+import 'package:mark/ui/leave_request_page.dart';
+
 
 class employeeCalendar extends StatefulWidget {
   @override
@@ -105,7 +107,7 @@ class _employeeCalendarState extends State<employeeCalendar> {
       weekendTextStyle: TextStyle(
         color: Colors.green,
       ),
-      todayButtonColor: Colors.yellow[400],
+      todayButtonColor: Colors.yellow[600],
       markedDatesMap: _markedDateMap,
       markedDateShowIcon: true,
       markedDateIconMaxShown: 1,
@@ -128,7 +130,28 @@ class _employeeCalendarState extends State<employeeCalendar> {
             _calendarCarouselNoHeader,
             markerRepresent(Colors.red[400], "Morning Shift"),
             markerRepresent(Colors.blue[200], "Night Shift"),
-            markerRepresent(Colors.yellow[400],"Today")
+            markerRepresent(Colors.yellow[600],"Today"),
+            ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    fixedSize: Size(150,80),
+                  ),
+                  child: FittedBox(
+                    child: Text(
+                      "Apply for Leave",
+                      style: TextStyle(
+                          fontSize: 40,
+                          color: Colors.white),
+                    ),
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => leaveRequest()),
+                );
+                  })
           ],
         ),
       ),
@@ -139,7 +162,7 @@ class _employeeCalendarState extends State<employeeCalendar> {
     return new ListTile(
       leading: new CircleAvatar(
         backgroundColor: color,
-        radius: cHeight * 0.015,
+        radius: cHeight * 0.010,
       ),
       title: new Text(
         data,
