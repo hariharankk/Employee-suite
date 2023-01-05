@@ -111,7 +111,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   /// Display message in snack bar
   void showInSnackBar(String message, Duration duration) {
-    _scaffoldKey.currentState.showSnackBar(
+    ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(message),
         duration: duration,

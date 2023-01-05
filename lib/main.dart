@@ -2,10 +2,14 @@ import 'dart:async';
 import 'package:camera/camera.dart';
 import 'package:mark/services/authentication.dart';
 import 'package:mark/ui/admin_side/admin_page.dart';
+import 'package:mark/ui/admin_side/employee_form.dart';
+import 'package:mark/ui/admin_side/list_employee_page.dart';
 import 'package:mark/ui/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:mark/ui/admin or user.dart';
 import 'package:mark/ui/login_page.dart';
+import 'package:mark/widgets/employee_calendar.dart';
+import 'package:mark/ui/leave_request_page.dart';
 
 List<CameraDescription> cameras;
 var frontCamera;
@@ -34,8 +38,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "Attendance",
+      // title: title,
       debugShowCheckedModeBanner: false,
-      home: SplashScreen());
+      home: 
+      // SplashScreen()
+      // employeeCalendar(),
+      // ListEmployeePage()
+      leaveRequest()
+      // EmployeeForm(),
+      );
 
   }
 }
