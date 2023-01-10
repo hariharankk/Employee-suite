@@ -1,8 +1,5 @@
-
 import 'dart:math';
-
 import 'package:flutter/material.dart';
-
 import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart'
     show CalendarCarousel;
 import 'package:flutter_calendar_carousel/classes/event.dart';
@@ -76,6 +73,7 @@ class _employeeCalendarState extends State<employeeCalendar> {
   @override
   Widget build(BuildContext context) {
     cHeight = MediaQuery.of(context).size.height;
+    //code for marking night dates and shift
     for (int i = 0; i < len; i++) {
       _markedDateMap.add(
         NightDates[i],
@@ -88,7 +86,7 @@ class _employeeCalendarState extends State<employeeCalendar> {
         ),
       );
     }
-
+  //code for making morning dates and shift
     for (int i = 0; i < len; i++) {
       _markedDateMap.add(
         MorningDates[i],
@@ -102,12 +100,13 @@ class _employeeCalendarState extends State<employeeCalendar> {
       );
     }
 
+    //click on the dates is not yet enabled
     _calendarCarouselNoHeader = CalendarCarousel<Event>(
       height: cHeight * 0.54,
       weekendTextStyle: TextStyle(
         color: Colors.green,
       ),
-      todayButtonColor: Colors.yellow[600],
+      todayButtonColor: Colors.purple,
       markedDatesMap: _markedDateMap,
       markedDateShowIcon: true,
       markedDateIconMaxShown: 1,
@@ -130,7 +129,7 @@ class _employeeCalendarState extends State<employeeCalendar> {
             _calendarCarouselNoHeader,
             markerRepresent(Colors.red[400], "Morning Shift"),
             markerRepresent(Colors.blue[200], "Night Shift"),
-            markerRepresent(Colors.yellow[600],"Today"),
+            markerRepresent(Colors.purple,"Today"),
             ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     shape: RoundedRectangleBorder(
@@ -149,7 +148,7 @@ class _employeeCalendarState extends State<employeeCalendar> {
                   onPressed: () {
                     Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => leaveRequest()),
+                  MaterialPageRoute(builder: (context) => leaveRequest()), //leave request, select date, time , from , until , enter reason for leave 
                 );
                   })
           ],
@@ -157,7 +156,9 @@ class _employeeCalendarState extends State<employeeCalendar> {
       ),
     );
   }
+ 
 
+ //encircle the dates according to colour legend
   Widget markerRepresent(Color color, String data) {
     return new ListTile(
       leading: new CircleAvatar(
