@@ -1,17 +1,20 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:mark/widgets/button_widget.dart';
 import 'package:mark/widgets/employee_calendar.dart';
-
 import '../widgets/date_picker.dart';
 import '../widgets/date_range.dart';
 import '../widgets/date_time_picker.dart';
-
 import '../widgets/time_picker.dart';
+
+import 'package:http/http.dart' as http;
 
 class leaveRequest extends StatefulWidget {
   // const leaveRequest({super.key});
   @override
   State<leaveRequest> createState() => _leaveRequestState();
+  bool apiCall = false;
   // bool isDisable = true;
   // void setButton() {
   //   if (isDisable) {
@@ -61,7 +64,6 @@ class _leaveRequestState extends State<leaveRequest> {
               const SizedBox(height: 15),
               DateRangePickerWidget(),
               const SizedBox(height: 85),
-              
               TextField(
                 decoration: InputDecoration(
                   prefixIcon: Icon(Icons.text_snippet),
@@ -88,7 +90,13 @@ class _leaveRequestState extends State<leaveRequest> {
                           color: Color.fromARGB(255, 248, 248, 248)),
                     ),
                   ),
-                  onPressed: () {})
+                  onPressed: () async { //backend work needed
+                    final body = jsonEncode({'status': 1});
+                    final url = Uri.http('http://google.com', '');
+                    final response = await http.post(url,
+                        headers: {'Content-Type': 'application/json'},
+                        body: body);
+                  })
             ],
           ),
         ),
