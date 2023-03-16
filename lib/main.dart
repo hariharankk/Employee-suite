@@ -8,8 +8,6 @@ import 'package:mark/ui/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:mark/ui/admin or user.dart';
 import 'package:mark/ui/login_page.dart';
-import 'package:mark/widgets/employee_calendar.dart';
-import 'package:mark/ui/leave_request_page.dart';
 
 List<CameraDescription> cameras;
 var frontCamera;
@@ -40,12 +38,7 @@ class MyApp extends StatelessWidget {
       title: "Attendance",
       // title: title,
       debugShowCheckedModeBanner: false,
-      home: 
-      // SplashScreen()
-      // employeeCalendar(),
-      // ListEmployeePage()
-      leaveRequest()
-      // EmployeeForm(),
+      home: SplashScreen()
       );
 
   }

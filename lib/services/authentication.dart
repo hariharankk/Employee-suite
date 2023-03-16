@@ -88,7 +88,6 @@ class Auth implements BaseAuth {
       );
       var responseData = json.decode(response.body);
       if(responseData['status']){
-
         await jwt.store_token(responseData['token']);
         return responseData['status'];
       }
